@@ -26,7 +26,7 @@ class ProteinSynthesis {
         }
     }
 
-    public static String translateRNA(CharQueue rna) {
+    public static CharQueue translateRNA(CharQueue rna) {
         String seg = "";
         CharQueue protien = new CharQueue();
 
@@ -41,7 +41,7 @@ class ProteinSynthesis {
                 seg += rna.dequeue();
                 seg += rna.dequeue();
             } else {
-                return protien.toString();
+                return protien;
             }
 
         }
@@ -59,7 +59,7 @@ class ProteinSynthesis {
             protien.enqueue(CodonMap.getAminoAcid(seg));
         }
 
-        return protien.toString();
+        return protien;
     }
 
 }
