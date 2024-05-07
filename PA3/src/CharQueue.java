@@ -18,13 +18,20 @@ public class CharQueue {
     private int front;
     private int rear;
 
+    /**
+     * This creates a CHarQueue object. The default size
+     * of the circular array is 5.
+     */
     public CharQueue() {
         circularArray = new char[5];
         length = 0;
         front = 0;
         rear = 0;
     }
-
+    /**
+     * This creates a CHarQueue object.
+     * @param capacity determines the size of capaciy
+     */
     public CharQueue(int capacity) throws IllegalArgumentException{
         if (capacity < 1) {
             throw new IllegalArgumentException();
@@ -94,6 +101,7 @@ public class CharQueue {
     /**
      * This returns the element at the front of the queue.
      * @throws NoSuchElementException if the queue is empty.
+     * @return circularArray[front] gives the first element.
      */
     public char peek() throws NoSuchElementException{
         if (length == 0) {
@@ -107,6 +115,7 @@ public class CharQueue {
      * This method removes an element from the front of the
      * queue and it returns it. It changes the front pointer.
      * @throws NoSuchElementException if the queue is empty.
+     * @return the dequeeud element
      */
     public char dequeue() throws NoSuchElementException{
         if (length == 0) {
