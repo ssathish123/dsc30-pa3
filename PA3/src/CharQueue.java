@@ -35,6 +35,12 @@ public class CharQueue {
         rear = 0;
     }
 
+    /**
+     * This checks if the queue is empty. It will return true
+     * if it is empty
+     * @param: None
+     *
+     */
     public boolean isEmpty() {
         if (length == 0) {
             return true;
@@ -43,10 +49,20 @@ public class CharQueue {
         }
     }
 
+    /**
+     * This returns the size of the queue. It will return
+     * the length variable.
+     * @param: None
+     */
     public int size() {
         return length;
     }
 
+    /**
+     * This method clears the queue. It returns the
+     * queue to all of its default settings.
+     * @param: None
+     */
     public void clear() {
         circularArray = new char[circularArray.length];
         length = 0;
@@ -54,7 +70,12 @@ public class CharQueue {
         rear = 0;
     }
 
-
+    /**
+     * This method enqueus and adds an element to the front
+     * of the queue. It updates the length and rear variables
+     * to match the enqueue.
+     * @param elem : This is the element that wants to be added.
+     */
     public void enqueue(char elem) {
         if (length == circularArray.length) {
             char[] doubled = new char[length * 2];
@@ -70,6 +91,10 @@ public class CharQueue {
         length += 1;
     }
 
+    /**
+     * This returns the element at the front of the queue.
+     * @throws NoSuchElementException if the queue is empty.
+     */
     public char peek() throws NoSuchElementException{
         if (length == 0) {
             throw new NoSuchElementException();
@@ -78,7 +103,11 @@ public class CharQueue {
         }
 
     }
-
+    /**
+     * This method removes an element from the front of the
+     * queue and it returns it. It changes the front pointer.
+     * @throws NoSuchElementException if the queue is empty.
+     */
     public char dequeue() throws NoSuchElementException{
         if (length == 0) {
             throw new NoSuchElementException();

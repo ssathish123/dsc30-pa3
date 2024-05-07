@@ -84,9 +84,9 @@ class CharQueueTest {
         test.enqueue('a');
         test.enqueue('b');
         char elem = test.dequeue();
-        assertEquals('a', test.peek());
-        assertEquals('b', elem);
-        assertEquals('a', test.dequeue());
+        assertEquals('b', test.peek());
+        assertEquals('a', elem);
+        assertEquals('b', test.dequeue());
 
     }
 

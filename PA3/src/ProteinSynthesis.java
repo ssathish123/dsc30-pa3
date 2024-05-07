@@ -3,6 +3,8 @@
     PID:  A17804789
  */
 
+import java.util.NoSuchElementException;
+
 /**
  *
  *
@@ -10,8 +12,14 @@
  * @since 2024
  */
 class ProteinSynthesis {
+
+    /**
+     * This element turns the dna into a queue of RNA.
+     * It changes the T chars to a U.
+     * @param dna : the string representation of dna
+     */
     public static CharQueue transcribeDNA(String dna) {
-        CharQueue RNA = new CharQueue(dna.length());
+        CharQueue rna = new CharQueue(dna.length());
         String converted = "";
         if (dna.length() % 3 == 0){
             for (int i = 0; i < dna.length(); i++){
@@ -24,15 +32,21 @@ class ProteinSynthesis {
             }
 
             for (int i = 0; i < converted.length(); i++){
-                RNA.enqueue(converted.charAt(i));
+                rna.enqueue(converted.charAt(i));
             }
 
-            return RNA;
+            return rna;
         } else {
             throw new IllegalArgumentException();
         }
     }
 
+    /**
+     * This method converts the CharQueue of RNA into a protien.
+     * It starts and stops on specific codons and returns the
+     * remaining accordingly
+     * @param rna A CharQueue of rna to be convereted
+     */
     public static CharQueue translateRNA(CharQueue rna) {
         String seg = "";
         CharQueue protien = new CharQueue();
