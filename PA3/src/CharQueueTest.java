@@ -1,8 +1,18 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharQueueTest {
+
+    @Test
+    public void constructor(){
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CharQueue test = new CharQueue(0);
+        });
+    }
 
     @Test
     public void isEmptyTest(){
@@ -56,22 +66,27 @@ class CharQueueTest {
         test.enqueue('a');
         test.enqueue('b');
         test.enqueue('c');
-        assertEquals('c', test.peek());
+        assertEquals('a', test.peek());
         test.dequeue();
         assertEquals('b', test.peek());
         test.dequeue();
-        assertEquals('a', test.peek());
+        assertEquals('c', test.peek());
+        test.dequeue();
+        Assertions.assertThrows(NoSuchElementException.class, () -> {
+            test.peek();
+        });
+
     }
 
     @Test
     public void dequeueTest(){
         CharQueue test = new CharQueue();
         test.enqueue('a');
-        assertEquals('a', test.dequeue());
         test.enqueue('b');
-        assertEquals('b', test.dequeue());
-        test.enqueue('c');
-        assertEquals('c', test.dequeue());
+        char elem = test.dequeue();
+        assertEquals('a', test.peek());
+        assertEquals('b', elem);
+        assertEquals('a', test.dequeue());
 
     }
 

@@ -21,12 +21,12 @@ public class CharQueue {
     public CharQueue() {
         circularArray = new char[5];
         length = 0;
-        front = -1;
-        rear = -1;
+        front = 0;
+        rear = 0;
     }
 
-    public CharQueue(int capacity) {
-        if (capacity < 1){
+    public CharQueue(int capacity) throws IllegalArgumentException{
+        if (capacity < 1) {
             throw new IllegalArgumentException();
         }
         circularArray = new char[capacity];
@@ -36,7 +36,7 @@ public class CharQueue {
     }
 
     public boolean isEmpty() {
-        if (circularArray.length == 0){
+        if (length == 0) {
             return true;
         } else {
             return false;
@@ -48,29 +48,30 @@ public class CharQueue {
     }
 
     public void clear() {
-        this.circularArray = new char[circularArray.length];
+        circularArray = new char[circularArray.length];
+        length = 0;
+        front = 0;
+        rear = 0;
     }
 
 
     public void enqueue(char elem) {
-        if (length == circularArray.length){
-            char[] doubled = new char[length*2];
-            for (int i = 0; i < length; i++){
+        if (length == circularArray.length) {
+            char[] doubled = new char[length * 2];
+            for (int i = 0; i < length; i++) {
                 //edit this part of the code
                 doubled[i] = circularArray[front];
             }
             circularArray = doubled;
         }
-        if (front == -1){
-            front = 0;
-        }
 
-        rear = (rear+1)%length;
         circularArray[rear] = elem;
+        rear = (rear + 1) % circularArray.length;
+        length += 1;
     }
 
-    public char peek() {
-        if (length == 0){
+    public char peek() throws NoSuchElementException{
+        if (length == 0) {
             throw new NoSuchElementException();
         } else {
             return circularArray[front];
@@ -78,18 +79,18 @@ public class CharQueue {
 
     }
 
-    public char dequeue() {
+    public char dequeue() throws NoSuchElementException{
         if (length == 0) {
             throw new NoSuchElementException();
-        } else {
-            if (front == rear){
-                front = -1;
-                rear = -1;
-            }
-
-            char elem = circularArray[front];
-            front = (front + 1) % 2;
-            return elem;
         }
+
+        char elem = circularArray[front];
+        circularArray[front] = '\u0000';
+
+        front = (front + 1) % circularArray.length;
+        length -= 1;
+
+        return elem;
+
     }
 }

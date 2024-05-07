@@ -12,14 +12,21 @@
 class ProteinSynthesis {
     public static CharQueue transcribeDNA(String dna) {
         CharQueue RNA = new CharQueue(dna.length());
+        String converted = "";
         if (dna.length() % 3 == 0){
             for (int i = 0; i < dna.length(); i++){
-                if (dna.charAt(i) == 'T'){
-                    RNA.enqueue('U');
+                char elem = dna.charAt(i);
+                if (elem == 'T'){
+                    converted += "U";
                 } else {
-                    RNA.enqueue(dna.charAt(i));
+                    converted += elem;
                 }
             }
+
+            for (int i = 0; i < converted.length(); i++){
+                RNA.enqueue(converted.charAt(i));
+            }
+
             return RNA;
         } else {
             throw new IllegalArgumentException();
@@ -30,20 +37,15 @@ class ProteinSynthesis {
         String seg = "";
         CharQueue protien = new CharQueue();
 
-        seg += rna.dequeue();
-        seg += rna.dequeue();
-        seg += rna.dequeue();
-
         while (seg != "AUG"){
             seg = "";
-            if (rna.size() % 3 ==0){
+            if (rna.size() % 3 == 0){
                 seg += rna.dequeue();
                 seg += rna.dequeue();
                 seg += rna.dequeue();
             } else {
                 return protien;
             }
-
         }
 
         seg += rna.dequeue();

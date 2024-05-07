@@ -6,15 +6,13 @@ class ProteinSynthesisTest {
 
     @Test
     public void transcribeDNATest(){
-        String dna = "ATA";
+        String dna = "GTA";
         CharQueue rna = ProteinSynthesis.transcribeDNA(dna);
 
-        assertEquals('A', rna.peek());
-        rna.dequeue();
-        assertEquals('U', rna.peek());
-        rna.dequeue();
-        assertEquals('A', rna.peek());
-        rna.dequeue();
+        assertEquals('G', rna.dequeue());
+        assertEquals('U', rna.dequeue());
+        assertEquals('A', rna.dequeue());
+
     }
 
     @Test
@@ -27,7 +25,7 @@ class ProteinSynthesisTest {
 
         String dna2 = "AUGUUUUAA";
         CharQueue rna2 = ProteinSynthesis.transcribeDNA(dna2);
-        assertEquals("F", ProteinSynthesis.translateRNA(rna2));
+        assertEquals("F", ProteinSynthesis.translateRNA(rna2).peek());
 
 
         String dna3 = "AUGUUUUCCUAA";
